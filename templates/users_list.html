@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}User's List{% endblock %}
+{% block content %}
+
+
+<table class="table table-striped">
+ <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">INN</th>
+      <th scope="col">Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>
+          <a href="{% url 'users:user-detail' user.id %}">
+          {{ user.username }}
+          </a>
+      </td>
+      <td>{{ user.inn }}</td>
+      <td>{{ user.billing }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+{% endblock %}

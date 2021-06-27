@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}User Detail{% endblock %}
+{% block content %}
+<ul class="list-group list-group-flush col-4">
+  <li class="list-group-item">{{ object.username }}</li>
+  <li class="list-group-item">INN: {{ object.inn }}</li>
+  <li class="list-group-item">Balance: {{ object.billing }}</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Transfer Form{% endblock %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% if transfers %}
+<table class="table table-striped">
+ <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">From</th>
+      <th scope="col">To</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for transfer in transfers %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+        <td>
+            <a href="{% url 'users:user-detail' transfer.sender.id %}">
+                {{ transfer.sender }}
+            </a>
+        </td>
+      <td>
+          {% for receiver in transfer.receiver.all %}
+          <a href="{% url 'users:user-detail' receiver.id %}">
+          {{ receiver.username }}
+          </a>
+          {% endfor %}
+      </td>
+      <td>{{ transfer.amount }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No transactions yet.</p>
+{% endif %}
+
+{% endblock %}
