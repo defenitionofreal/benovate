@@ -23,5 +23,13 @@
 
 ### Тестируйте API через https://benovate.herokuapp.com/api/v1/ или делайте запросы в Postman.
 
-### Unittests command - python manage.py test users.tests
+## Установка
+```
+git clone https://github.com/defenitionofreal/benovate.git
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+###### Unittests command - python manage.py test users.tests
 
